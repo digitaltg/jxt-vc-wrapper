@@ -1,0 +1,93 @@
+[] Must geneate the Two templates, template for the signed cred, and template for the original credential
+[] Keys must be loaded  over http requests or file reading (priority file reading)
+[] Update the documentLoader of eddsa-jxt-sdk from @pathcheck, to github
+
+Now we will try loading over http or https only http is handle (as the last result)
+export const documentLoader = async (url) => {
+  const context = contexts[url]
+
+  if (context) {
+    return {
+      contextUrl: null,
+      document: context,
+      documentUrl: url,
+    }
+  }
+
+  if (url && url.startsWith('did:')) {
+    try {
+      const document = await resolveDID(url)
+
+      if (document.didResolutionMetadata.error) {
+        console.log(document.didResolutionMetadata.error, document.didResolutionMetadata.message)
+      }
+
+      contexts[url] = document.didDocument
+
+      return {
+        url,
+        document: document.didDocument,
+        static: true,
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  if (url && url.startsWith('http://')) {
+    try {
+      const res = await fetch(url)
+      return {
+        url,
+        document: await res.json(),
+        static: true,
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  console.log('Unsupported URL on Tests', url)
+}
+
+
+[] UPdate the Did resolver to support localhost in get URM
+
+the new content will be like this
+async function get(url) {
+    try {
+      const res = await fetch(url);
+      
+      if (res.status >= 400) {
+        console.log(res);
+        throw new Error("Bad response from server");
+      }
+      
+      return await res.json();
+    } catch (err) {
+      //console.error(err);
+
+      //TODO: remove
+      try {
+        const res = await fetch(
+          url.replace('https://', 'http://'), {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+          },
+      });
+        if (res.status >= 400) {
+          console.log(res);
+          throw new Error("Bad response from server");
+        }
+        let text = await res.text();
+        console.log(text);
+        let json = JSON.parse(text);
+        console.log(JSON);
+
+        return json;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "id": "did:web:PCF.PW:1A12#WEB",
+    "type": "Ed25519VerificationKey2020",
+    "controller": "did:web:PCF.PW:1A12",
+    "publicKeyMultibase": "zGhTGvJH58518mWd5PAWnAVLx3dArnmQNmPqhhqmhuEsz",
+    "privateKeyMultibase": "z5Q2WLLaD7aJ44s6Aw6qXf1vNor9quCe1ZLhHqc63yhfFF63tbuTgPHgCzXKUbkHAGm8oE9jiQpCPepD88Jgyy7FW"
+  }
