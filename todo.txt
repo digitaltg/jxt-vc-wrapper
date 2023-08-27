@@ -1,6 +1,8 @@
 [] Must geneate the Two templates, template for the signed cred, and template for the original credential
 [] Keys must be loaded  over http requests or file reading (priority file reading)
 [] Update the documentLoader of eddsa-jxt-sdk from @pathcheck, to github
+[] Add minio support
+[] Describe remote jsons test
 
 Now we will try loading over http or https only http is handle (as the last result)
 export const documentLoader = async (url) => {

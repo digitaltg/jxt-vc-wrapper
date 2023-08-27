@@ -31,5 +31,10 @@
     "mocha": "^8.4.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^4.6.0"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }
