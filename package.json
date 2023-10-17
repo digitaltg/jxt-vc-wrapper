@@ -16,7 +16,7 @@
   "module": "lib/main.js",
   "react-native": "lib/main.js",
   "dependencies": {
-    "@xampyPathcheck/eddsa-jxt-sdk": "https://github.com/Xampy/eddsa-jxt-sdk.git",
+    "@digitaltg/eddsa-jxt-sdk": "https://github.com/digitaltg/eddsa-jxt-sdk.git",
     "axios": "^1.4.0",
     "chai": "^4.3.7",
     "cross-fetch": "^4.0.0",
